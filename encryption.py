@@ -1,13 +1,14 @@
 # encryption.py
 from Crypto.Util.number import bytes_to_long
 
-def encrypt(n, e, message):
-    return pow(bytes_to_long(message.encode()), e, n)
+def encrypt(n, d, message):
+    return pow(bytes_to_long(message.encode()), d, n)
 
 if __name__ == "__main__":
     message = input("Enter the Text to Encrypt: ")
-    key_n = int(input("Enter the public key 'n': "))
-    key_e = int(input("Enter the public key 'e': "))
 
-    encrypted = encrypt(key_n, key_e, message)
+    # Input the private key (n, d)
+    key_n, key_d = map(int, input("Enter the private key: ").split(','))
+
+    encrypted = encrypt(key_n, key_d, message)
     print(f"Encrypted Message: {encrypted}")
